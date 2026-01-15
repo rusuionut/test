@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulare Examen - Master TCC (Cap 1-6)</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="app-container">
+        <header class="main-header">
+            <h1>Simulare Examen Extins</h1>
+            <p class="subtitle">100 Întrebări din Capitolele 1 - 6 (Semiologie, Nevroze/Psihoze, Schizofrenie, Afective)
+            </p>
+
+            <div class="score-board fixed-header">
+                <div class="score-item">
+                    <span class="label">Răspunsuri</span>
+                    <span class="value" id="answered-count">0</span>
+                    <span class="total">/ 100</span>
+                </div>
+                <div class="score-item">
+                    <span class="label">Scor</span>
+                    <span class="value" id="score-count">0</span>
+                </div>
+            </div>
+        </header>
+
+        <main id="quiz-list" class="quiz-list">
+            <!-- Questions injected by JS -->
+        </main>
+
+        <footer>
+            <button id="reset-btn" class="btn secondary-btn">Resetează Tot Testul</button>
+            <p style="margin-top: 1rem; opacity: 0.7;">Succes!</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
