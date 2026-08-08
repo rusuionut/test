@@ -74,7 +74,14 @@ def validate(
             )
             continue
         if empty:
-            issues.append(Issue("info", field.id, "Nemenționat în înregistrare."))
+            # O lista goala insotita de citat inseamna "s-a constatat ca nu exista",
+            # nu "nu s-a spus nimic" — o consemnam ca atare.
+            if value == [] and evidence:
+                issues.append(
+                    Issue("info", field.id, "Consemnat explicit ca absent în înregistrare.")
+                )
+            else:
+                issues.append(Issue("info", field.id, "Nemenționat în înregistrare."))
             continue
 
         if field.is_derived:

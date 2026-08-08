@@ -5,10 +5,42 @@ from __future__ import annotations
 from datetime import datetime
 from typing import Any
 
-from .schema import Field, Template
+from .schema import Field, Section, Template
 from .validate import Issue
 
 MISSING = "_(nemenționat)_"
+# Absenta constatata explicit ("fara cicatrici") difera de informatia care
+# pur si simplu nu a fost dictata. In clinica, distinctia conteaza.
+NONE_STATED = "_(fără elemente de consemnat)_"
+
+
+UNASSESSED = "Neevaluat în această ședință."
+
+
+def empty_label(entry: dict[str, Any]) -> str:
+    """Ce se afiseaza pentru un camp gol, dupa cum absenta a fost sau nu consemnata."""
+    stated = entry.get("value") == [] and entry.get("evidence")
+    return NONE_STATED if stated else MISSING
+
+
+def field_has_content(entry: dict[str, Any]) -> bool:
+    """Campul spune ceva: fie o valoare, fie o absenta constatata explicit."""
+    value = (entry or {}).get("value")
+    if value not in (None, "", [], {}):
+        return True
+    return value == [] and bool((entry or {}).get("evidence"))
+
+
+def section_is_unassessed(section: Section, extraction: dict[str, Any]) -> bool:
+    """Nicio informatie in toata sectiunea — zona nu a fost abordata in sedinta.
+
+    O randam ca atare, in loc sa insiram zece campuri goale: un perete de
+    "(nementionat)" nu ajuta pe nimeni, iar clinic "neevaluat" nu inseamna
+    "normal", deci nici nu poate fi omis in tacere.
+    """
+    return bool(section.fields) and not any(
+        field_has_content(extraction.get(f.id, {})) for f in section.fields
+    )
 
 
 def _format_scalar(field: Field, value: Any) -> str:
@@ -39,7 +71,7 @@ def _render_field(field: Field, entry: dict[str, Any]) -> list[str]:
     value = (entry or {}).get("value")
 
     if value is None or value == "" or value == []:
-        return [f"**{field.label}:** {MISSING}", ""]
+        return [f"**{field.label}:** {empty_label(entry or {})}", ""]
 
     if field.type == "table":
         return [f"**{field.label}:**", "", *_format_table(field, value), ""]
@@ -79,8 +111,11 @@ def render_markdown(
                 "nu constatată direct în timpul ședinței.",
                 "",
             ]
-        for field in section.fields:
-            lines += _render_field(field, extraction.get(field.id, {}))
+        if section_is_unassessed(section, extraction):
+            lines += [f"_{UNASSESSED}_", ""]
+        else:
+            for field in section.fields:
+                lines += _render_field(field, extraction.get(field.id, {}))
         lines.append("")
 
     blocking = [i for i in (issues or []) if i.severity in ("error", "warning")]

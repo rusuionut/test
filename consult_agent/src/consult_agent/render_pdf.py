@@ -28,7 +28,7 @@ from reportlab.platypus import (
 )
 
 from .fonts import resolve_fonts
-from .render import MISSING
+from .render import UNASSESSED, empty_label, section_is_unassessed
 from .schema import Field, Template
 from .validate import Issue
 
@@ -90,8 +90,8 @@ def _field_flowables(field: Field, entry: dict[str, Any], st: dict) -> list:
     label = _esc(field.label)
 
     if value is None or value == "" or value == []:
-        # MISSING contine deja parantezele; sublinierile sunt sintaxa Markdown.
-        text = MISSING.strip("_")
+        # Eticheta contine deja parantezele; sublinierile sunt sintaxa Markdown.
+        text = empty_label(entry or {}).strip("_")
         return [Paragraph(f"<b>{label}:</b> <i>{_esc(text)}</i>", st["missing"]), Spacer(1, 3)]
 
     if field.type == "table":
@@ -192,6 +192,11 @@ def render_pdf(
                 )
             )
             head.append(Spacer(1, 6))
+        if section_is_unassessed(section, extraction):
+            head.append(Paragraph(f"<i>{_esc(UNASSESSED)}</i>", st["missing"]))
+            head.append(Spacer(1, 3))
+            story.append(KeepTogether(head))
+            continue
         # Titlul nu trebuie sa ramana singur la baza paginii.
         story.append(KeepTogether(head))
         for field in section.fields:

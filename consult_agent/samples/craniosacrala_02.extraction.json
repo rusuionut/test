@@ -1,0 +1,151 @@
+{
+  "nume_client": {
+    "value": "A.P.",
+    "evidence": "A treia sedinta cu A.P."
+  },
+  "data_sedintei": {
+    "value": "2026-08-05",
+    "evidence": "cinci august doua mii douazeci si sase"
+  },
+  "tip_sedinta": {
+    "value": null,
+    "evidence": null
+  },
+  "numar_sedinta": {
+    "value": 3,
+    "evidence": "A treia sedinta cu A.P."
+  },
+  "terapeut": {
+    "value": null,
+    "evidence": null
+  },
+  "istoric_relatat": {
+    "value": [
+      "Somn perturbat de aproximativ două luni, cu treziri repetate pe parcursul nopții",
+      "Scrâșnit din dinți în somn, semnalat de soție",
+      "Cefalee matinală localizată în zona temporală"
+    ],
+    "evidence": "ca doarme prost de vreo doua luni"
+  },
+  "tonus_general": {
+    "value": null,
+    "evidence": null
+  },
+  "respiratie": {
+    "value": "Respirație toracică superficială, fără coborâre în abdomen",
+    "evidence": "respiratie toracica superficiala, nu coboara in abdomen"
+  },
+  "alte_observatii_generale": {
+    "value": "La evaluarea posturală în ortostatism: umărul stâng mai ridicat, capul ușor înclinat spre dreapta, rotație discretă de trunchi.",
+    "evidence": "umarul stang mai ridicat, capul usor inclinat spre dreapta"
+  },
+  "traseu_tensiune": {
+    "value": "Tensiunea se concentrează la nivelul bazei craniului, cu occiputul încărcat și musculatura suboccipitală hipertonă, și se extinde cranio-mandibular la nivelul maseterilor. Separat, diafragma toracică este rigidă, cu mobilitate redusă mai ales pe partea dreaptă.",
+    "evidence": "Baza craniului tensionata, occipitul foarte incarcat"
+  },
+  "zone_tensionate": {
+    "value": [
+      "Baza craniului și occiputul",
+      "Musculatura suboccipitală",
+      "Maseterii, bilateral, mai accentuat pe dreapta",
+      "Articulația temporo-mandibulară — deschidere asimetrică, cu deviere spre dreapta",
+      "Diafragma toracică, cu mobilitate redusă mai ales pe partea dreaptă",
+      "Psoasul drept, scurtat și dureros la palpare"
+    ],
+    "evidence": "Suboccipitalii hipertoni"
+  },
+  "corelatii_simptome": {
+    "value": null,
+    "evidence": null
+  },
+  "observatii_colon": {
+    "value": null,
+    "evidence": null
+  },
+  "cicatrici": {
+    "value": [],
+    "evidence": "Fara cicatrici."
+  },
+  "alte_observatii_viscerale": {
+    "value": "Psoasul drept scurtat și dureros la palpare.",
+    "evidence": "psoasul drept scurtat si dureros la palpare"
+  },
+  "mobilitate_bazin": {
+    "value": null,
+    "evidence": null
+  },
+  "articulatii_sacroiliace": {
+    "value": null,
+    "evidence": null
+  },
+  "musculatura_hipertona": {
+    "value": null,
+    "evidence": null
+  },
+  "musculatura_hipotona": {
+    "value": null,
+    "evidence": null
+  },
+  "fascia_plantara": {
+    "value": null,
+    "evidence": null
+  },
+  "tendon_ahilian": {
+    "value": null,
+    "evidence": null
+  },
+  "arc_transversal": {
+    "value": null,
+    "evidence": null
+  },
+  "arc_longitudinal": {
+    "value": null,
+    "evidence": null
+  },
+  "deformari_degete": {
+    "value": null,
+    "evidence": null
+  },
+  "alte_observatii_membre": {
+    "value": null,
+    "evidence": null
+  },
+  "lant_posterior": {
+    "value": null,
+    "evidence": null
+  },
+  "alte_lanturi": {
+    "value": null,
+    "evidence": null
+  },
+  "prioritati": {
+    "value": [
+      "Continuarea lucrului pe baza craniului și pe musculatura suboccipitală",
+      "Eliberarea cranio-mandibulară, cu atenție la asimetria de deschidere și la maseterul drept",
+      "Continuarea lucrului pe diafragma toracică, în special pe partea dreaptă",
+      "Reevaluarea și lucrul pe psoasul drept",
+      "Reluarea evaluării zonei rămase neconsemnate la finalul ședinței"
+    ],
+    "evidence": "Direcțiile reiau zonele consemnate ca tensionate: baza craniului și suboccipitalii, maseterii și articulația temporo-mandibulară, diafragma toracică rigidă și psoasul drept. Ultima direcție reia observația întreruptă din dictare."
+  },
+  "recomandari_client": {
+    "value": [
+      "Conștientizarea respirației în zona abdominală, dat fiind modelul toracic superficial observat",
+      "Relaxarea conștientă a maxilarului în timpul zilei, mai ales în perioadele de concentrare",
+      "Aplicații locale de căldură pe zona maseterilor și a cefei, seara",
+      "Evitarea alimentelor care necesită masticație prelungită în perioadele cu disconfort"
+    ],
+    "evidence": "Recomandări derivate din modelul respirator toracic superficial, din tensiunea maseterilor și a bazei craniului."
+  },
+  "consecinte_posibile": {
+    "value": [
+      "Menținerea unui model respirator superficial, cu solicitarea musculaturii respiratorii accesorii",
+      "Persistența sau accentuarea cefaleei matinale, prin tensiunea suboccipitală și cranio-mandibulară",
+      "Uzura dentară și disconfortul articular temporo-mandibular, prin menținerea încărcării asimetrice",
+      "Limitarea progresivă a mobilității toracice, prin rigiditatea diafragmatică",
+      "Compensări la nivel lombar și al bazinului, prin scurtarea psoasului drept",
+      "Întreținerea unui somn de calitate scăzută, prin dificultatea de relaxare a sistemului nervos"
+    ],
+    "evidence": "Consecințe funcționale posibile ale rigidității diafragmatice, ale tensiunii suboccipitale și cranio-mandibulare asimetrice, și ale scurtării psoasului drept."
+  }
+}
