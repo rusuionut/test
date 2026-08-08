@@ -105,3 +105,30 @@ def test_report_marks_derived_sections():
     # Cititorul trebuie sa vada ce e constatat si ce e interpretat.
     assert "nu constatată direct în timpul ședinței" in result.report_markdown
     assert "terapeutului" in result.report_markdown  # disclaimer din template
+
+
+def test_isolated_derived_field_is_marked_in_the_report():
+    """Un câmp dedus între observații trebuie marcat individual.
+
+    Secțiunile integral deduse au nota lor; un singur câmp dedus așezat printre
+    constatări ar trece drept constatare dacă nu îl marcăm.
+    """
+    template = _template()
+    fascial = next(s for s in template.sections if s.id == "fascial")
+    assert template.field("corelatii_simptome").is_derived
+    assert not fascial.is_derived  # restul secțiunii rămâne observată
+
+    report = _run_report()
+    assert "Corelații cu simptomele relatate (interpretare):" in report
+    # Etichetele observate din aceeași secțiune rămân nemarcate.
+    assert "Zone cu tensiune crescută:" in report
+    assert "Zone cu tensiune crescută (interpretare)" not in report
+
+
+def _run_report() -> str:
+    return run(
+        TRANSCRIPT,
+        template=_template(),
+        asr=get_asr("text-file"),
+        extractor=get_extractor("offline", path=EXTRACTION),
+    ).report_markdown

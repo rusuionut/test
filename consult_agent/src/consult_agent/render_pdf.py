@@ -28,7 +28,7 @@ from reportlab.platypus import (
 )
 
 from .fonts import resolve_fonts
-from .render import UNASSESSED, empty_label, section_is_unassessed
+from .render import UNASSESSED, empty_label, field_label, section_is_unassessed
 from .schema import Field, Template
 from .validate import Issue
 
@@ -85,9 +85,11 @@ def _esc(value: Any) -> str:
     return escape(str(value))
 
 
-def _field_flowables(field: Field, entry: dict[str, Any], st: dict) -> list:
+def _field_flowables(
+    field: Field, entry: dict[str, Any], st: dict, label: str | None = None
+) -> list:
     value = (entry or {}).get("value")
-    label = _esc(field.label)
+    label = _esc(label if label is not None else field.label)
 
     if value is None or value == "" or value == []:
         # Eticheta contine deja parantezele; sublinierile sunt sintaxa Markdown.
@@ -200,7 +202,9 @@ def render_pdf(
         # Titlul nu trebuie sa ramana singur la baza paginii.
         story.append(KeepTogether(head))
         for field in section.fields:
-            story += _field_flowables(field, extraction.get(field.id, {}), st)
+            story += _field_flowables(
+                field, extraction.get(field.id, {}), st, field_label(field, section)
+            )
 
     flagged = [i for i in (issues or []) if i.severity in ("error", "warning")]
     if flagged:

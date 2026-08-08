@@ -52,8 +52,8 @@
     "evidence": "partea cranio-cervicala dreapta este mai tensionata"
   },
   "corelatii_simptome": {
-    "value": "Tensiunea fascială percepută la nivelul rinichiului și vezicii urinare se corelează cu episoadele ocazionale de infecții urinare și disconfort urinar relatate de clientă.",
-    "evidence": "s-a simtit tensiune pe fascia rinichilor si a vezicii"
+    "value": "Tensiunea fascială percepută la nivelul rinichiului și vezicii urinare este compatibilă cu episoadele de infecții urinare și disconfort relatate de clientă. Congestia pe traseul colonului se corelează cu tranzitul intestinal încetinit.",
+    "evidence": "Interpretare a tensiunii fasciale renale și vezicale, respectiv a congestiei colonului, raportate la simptomele relatate de clientă."
   },
   "observatii_colon": {
     "value": "Pe întregul traseu al colonului s-a perceput o stare inflamatorie și o congestie fascială crescută, compatibilă cu tranzitul intestinal încetinit relatat de clientă.",
@@ -161,5 +161,33 @@
       "Menținerea unor tensiuni compensatorii în întregul corp, prin adaptări succesive ale lanțurilor miofasciale"
     ],
     "evidence": "Consecințe funcționale posibile ale hipertoniei generale, ale tonusului crescut pe lanțul posterior, ale mobilității reduse a bazinului, ale dezechilibrului muscular la nivelul gambelor cu prăbușirea arcului transversal, și ale congestiei fasciale abdominale."
+  },
+  "baza_craniului": {
+    "value": null,
+    "evidence": null
+  },
+  "musculatura_masticatorie": {
+    "value": null,
+    "evidence": null
+  },
+  "articulatia_tmj": {
+    "value": null,
+    "evidence": null
+  },
+  "alte_observatii_craniene": {
+    "value": null,
+    "evidence": null
+  },
+  "zone_lucrate": {
+    "value": null,
+    "evidence": null
+  },
+  "tehnici_aplicate": {
+    "value": null,
+    "evidence": null
+  },
+  "raspuns_imediat": {
+    "value": null,
+    "evidence": null
   }
 }

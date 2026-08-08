@@ -40,23 +40,19 @@
     "evidence": "umarul stang mai ridicat, capul usor inclinat spre dreapta"
   },
   "traseu_tensiune": {
-    "value": "Tensiunea se concentrează la nivelul bazei craniului, cu occiputul încărcat și musculatura suboccipitală hipertonă, și se extinde cranio-mandibular la nivelul maseterilor. Separat, diafragma toracică este rigidă, cu mobilitate redusă mai ales pe partea dreaptă.",
-    "evidence": "Baza craniului tensionata, occipitul foarte incarcat"
+    "value": "Tensiunea dominantă este cranio-cervicală, cu extindere cranio-mandibulară (detaliată separat). La nivelul trunchiului, diafragma toracică este rigidă, cu mobilitate redusă mai ales pe dreapta, iar psoasul drept este scurtat.",
+    "evidence": "Diafragma toracica se simte foarte rigida, cu mobilitate redusa mai ales pe partea dreapta"
   },
   "zone_tensionate": {
     "value": [
-      "Baza craniului și occiputul",
-      "Musculatura suboccipitală",
-      "Maseterii, bilateral, mai accentuat pe dreapta",
-      "Articulația temporo-mandibulară — deschidere asimetrică, cu deviere spre dreapta",
       "Diafragma toracică, cu mobilitate redusă mai ales pe partea dreaptă",
       "Psoasul drept, scurtat și dureros la palpare"
     ],
-    "evidence": "Suboccipitalii hipertoni"
+    "evidence": "Diafragma toracica se simte foarte rigida"
   },
   "corelatii_simptome": {
-    "value": null,
-    "evidence": null
+    "value": "Tensiunea maseterilor și asimetria temporo-mandibulară sunt compatibile cu scrâșnitul din dinți relatat de client. Tensiunea suboccipitală și cea de la baza craniului se corelează cu cefaleea matinală din zona temporală.",
+    "evidence": "Interpretare a tensiunii cranio-mandibulare și suboccipitale consemnate, raportată la scrâșnitul din dinți și cefaleea matinală relatate de client."
   },
   "observatii_colon": {
     "value": null,
@@ -147,5 +143,36 @@
       "Întreținerea unui somn de calitate scăzută, prin dificultatea de relaxare a sistemului nervos"
     ],
     "evidence": "Consecințe funcționale posibile ale rigidității diafragmatice, ale tensiunii suboccipitale și cranio-mandibulare asimetrice, și ale scurtării psoasului drept."
+  },
+  "baza_craniului": {
+    "value": "Baza craniului tensionată, occiput încărcat, musculatura suboccipitală hipertonă.",
+    "evidence": "Baza craniului tensionata, occipitul foarte incarcat"
+  },
+  "musculatura_masticatorie": {
+    "value": "Maseteri foarte tensionați bilateral, mai accentuat pe partea dreaptă.",
+    "evidence": "muschii maseteri foarte tensionati bilateral"
+  },
+  "articulatia_tmj": {
+    "value": "Deschidere asimetrică a gurii, cu deviere spre dreapta.",
+    "evidence": "Articulatia temporo mandibulara cu deschidere asimetrica"
+  },
+  "alte_observatii_craniene": {
+    "value": null,
+    "evidence": null
+  },
+  "zone_lucrate": {
+    "value": [
+      "Diafragma toracică",
+      "Baza craniului"
+    ],
+    "evidence": "Am lucrat pe diafragma si pe baza craniului"
+  },
+  "tehnici_aplicate": {
+    "value": null,
+    "evidence": null
+  },
+  "raspuns_imediat": {
+    "value": "La finalul ședinței respirația a coborât mai jos, cu amplitudine percepută mai mare.",
+    "evidence": "La final respiratia a coborat un pic mai jos"
   }
 }

@@ -89,3 +89,21 @@ def test_a_section_with_only_an_explicit_absence_is_not_unassessed():
         stripped[f.id] = {"value": None, "evidence": None}
     stripped["cicatrici"] = {"value": [], "evidence": "Fara cicatrici."}
     assert not section_is_unassessed(visceral, stripped)
+
+
+def test_intervention_section_captures_what_was_done():
+    """Golul care pierdea „am lucrat pe diafragmă… respirația a coborât”."""
+    report = _run_report()
+    assert "Zone asupra cărora s-a intervenit" in report
+    assert "Diafragma toracică" in report
+    assert "respirația a coborât mai jos" in report
+
+
+def test_cranio_mandibular_findings_have_their_own_section():
+    report = _run_report()
+    assert "Craniu și articulație temporo-mandibulară" in report
+    assert "Maseteri foarte tensionați bilateral" in report
+
+
+def _run_report() -> str:
+    return _run().report_markdown

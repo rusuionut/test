@@ -15,6 +15,15 @@ NONE_STATED = "_(fără elemente de consemnat)_"
 
 
 UNASSESSED = "Neevaluat în această ședință."
+# Un camp dedus asezat printre observatii ar arata ca o constatare. Sectiunile
+# integral deduse au deja nota lor; campul izolat are nevoie de propriul marcaj.
+DERIVED_MARK = " (interpretare)"
+
+
+def field_label(field: Field, section: Section) -> str:
+    if field.is_derived and not section.is_derived:
+        return f"{field.label}{DERIVED_MARK}"
+    return field.label
 
 
 def empty_label(entry: dict[str, Any]) -> str:
@@ -67,22 +76,23 @@ def _format_table(field: Field, rows: list[Any]) -> list[str]:
     return lines
 
 
-def _render_field(field: Field, entry: dict[str, Any]) -> list[str]:
+def _render_field(field: Field, entry: dict[str, Any], label: str | None = None) -> list[str]:
     value = (entry or {}).get("value")
+    label = label if label is not None else field.label
 
     if value is None or value == "" or value == []:
-        return [f"**{field.label}:** {empty_label(entry or {})}", ""]
+        return [f"**{label}:** {empty_label(entry or {})}", ""]
 
     if field.type == "table":
-        return [f"**{field.label}:**", "", *_format_table(field, value), ""]
+        return [f"**{label}:**", "", *_format_table(field, value), ""]
 
     if field.type == "list":
-        return [f"**{field.label}:**", "", *(f"- {item}" for item in value), ""]
+        return [f"**{label}:**", "", *(f"- {item}" for item in value), ""]
 
     if field.type == "text":
-        return [f"**{field.label}:**", "", str(value), ""]
+        return [f"**{label}:**", "", str(value), ""]
 
-    return [f"**{field.label}:** {_format_scalar(field, value)}", ""]
+    return [f"**{label}:** {_format_scalar(field, value)}", ""]
 
 
 def render_markdown(
@@ -115,7 +125,9 @@ def render_markdown(
             lines += [f"_{UNASSESSED}_", ""]
         else:
             for field in section.fields:
-                lines += _render_field(field, extraction.get(field.id, {}))
+                lines += _render_field(
+                    field, extraction.get(field.id, {}), field_label(field, section)
+                )
         lines.append("")
 
     blocking = [i for i in (issues or []) if i.severity in ("error", "warning")]

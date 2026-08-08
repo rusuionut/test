@@ -75,7 +75,34 @@ sections:
       - id: corelatii_simptome
         label: Corelații cu simptomele relatate
         type: text
-        description: Legăturile observate între zonele tensionate și ce a confirmat clientul.
+        # Dedus: legatura dintre o zona tensionata si un simptom relatat este o
+        # interpretare, nu o constatare — chiar si atunci cand terapeutul o rosteste.
+        mode: derived
+        description: >
+          Legăturile plauzibile între zonele tensionate consemnate și simptomele
+          relatate de client. Formulare prudentă („este compatibilă cu", „se
+          corelează cu"), fără a afirma cauzalitate.
+
+  - id: cranio_mandibular
+    title: Craniu și articulație temporo-mandibulară
+    fields:
+      - id: baza_craniului
+        label: Baza craniului și occiputul
+        type: text
+        description: Tensiune la nivelul bazei craniului, occiputului, musculaturii suboccipitale.
+      - id: musculatura_masticatorie
+        label: Musculatura masticatorie
+        type: text
+        description: Maseteri, temporali, pterigoidieni — tonus, asimetrii, sensibilitate.
+      - id: articulatia_tmj
+        label: Articulația temporo-mandibulară
+        type: text
+        description: >
+          Amplitudinea și simetria deschiderii gurii, devieri, zgomote articulare,
+          sensibilitate la palpare.
+      - id: alte_observatii_craniene
+        label: Alte observații craniene
+        type: text
 
   - id: visceral
     title: Zona abdominală și viscerală
@@ -110,12 +137,16 @@ sections:
   - id: membre_inferioare
     title: Membre inferioare și sprijin plantar
     fields:
+      # Eticheta spune explicit domeniul: altfel modelul aseaza aici si musculatura
+      # masticatorie sau cervicala, care au sectiunile lor.
       - id: musculatura_hipertona
-        label: Musculatură hipertonă
+        label: Musculatură hipertonă (membre inferioare)
         type: list
+        description: Doar musculatura membrelor inferioare. Restul corpului are secțiunile sale.
       - id: musculatura_hipotona
-        label: Musculatură hipotonă
+        label: Musculatură hipotonă (membre inferioare)
         type: list
+        description: Doar musculatura membrelor inferioare. Restul corpului are secțiunile sale.
       - id: fascia_plantara
         label: Fascia plantară
         type: string
@@ -144,6 +175,25 @@ sections:
       - id: alte_lanturi
         label: Alte lanțuri implicate
         type: text
+
+  - id: interventie
+    title: Intervenția din ședință
+    description: Ce s-a lucrat efectiv și cum a răspuns organismul până la finalul ședinței.
+    fields:
+      - id: zone_lucrate
+        label: Zone asupra cărora s-a intervenit
+        type: list
+        description: Regiunile asupra cărora terapeutul a lucrat efectiv în această ședință.
+      - id: tehnici_aplicate
+        label: Tehnici aplicate
+        type: list
+        description: Tehnicile numite explicit de terapeut. Lasă gol dacă nu sunt numite.
+      - id: raspuns_imediat
+        label: Răspuns imediat la finalul ședinței
+        type: text
+        description: >
+          Modificările percepute până la finalul ședinței (mobilitate, respirație,
+          tonus, senzații relatate de client). Doar ce s-a constatat, fără prognostic.
 
   # --- de aici in jos: continut formulat de model, nu constatat in sedinta ---
 
