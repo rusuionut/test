@@ -42,7 +42,7 @@ def test_pipeline_end_to_end():
     assert "Maria Ionescu" in result.report_markdown
     assert result.issue_counts["error"] == 0
     # Campurile nementionate trebuie marcate, nu completate.
-    assert "_(nementionat)_" in result.report_markdown
+    assert "_(nemenționat)_" in result.report_markdown
 
 
 def test_missing_required_field_is_an_error():
@@ -63,7 +63,7 @@ def test_fabricated_value_is_caught():
     }
     issues = validate(data, template, TRANSCRIPT.read_text(encoding="utf-8"))
     assert any(
-        i.severity == "error" and i.field_id == "alergii" and "inventata" in i.message
+        i.severity == "error" and i.field_id == "alergii" and "inventat" in i.message
         for i in issues
     )
 

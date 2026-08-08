@@ -77,7 +77,7 @@ def test_observed_fields_still_reject_fabrication():
     }
     issues = validate(data, template, _transcript())
     assert any(
-        i.field_id == "tonus_general" and i.severity == "error" and "inventata" in i.message
+        i.field_id == "tonus_general" and i.severity == "error" and "inventat" in i.message
         for i in issues
     )
 
@@ -101,7 +101,7 @@ def test_report_marks_derived_sections():
         extractor=get_extractor("offline", path=EXTRACTION),
     )
     assert result.issue_counts["error"] == 0
-    assert "Directii de lucru terapeutic" in result.report_markdown
+    assert "Direcții de lucru terapeutic" in result.report_markdown
     # Cititorul trebuie sa vada ce e constatat si ce e interpretat.
-    assert "nu constatata direct in timpul sedintei" in result.report_markdown
+    assert "nu constatată direct în timpul ședinței" in result.report_markdown
     assert "terapeutului" in result.report_markdown  # disclaimer din template

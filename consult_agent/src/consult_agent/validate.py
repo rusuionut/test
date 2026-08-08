@@ -70,11 +70,11 @@ def validate(
 
         if field.required and empty:
             issues.append(
-                Issue("error", field.id, f"Camp obligatoriu necompletat ({field.label}).")
+                Issue("error", field.id, f"Câmp obligatoriu necompletat ({field.label}).")
             )
             continue
         if empty:
-            issues.append(Issue("info", field.id, "Nementionat in inregistrare."))
+            issues.append(Issue("info", field.id, "Nemenționat în înregistrare."))
             continue
 
         if field.is_derived:
@@ -83,15 +83,15 @@ def validate(
             # iar raportul il marcheaza vizibil ca dedus.
             if not evidence:
                 issues.append(
-                    Issue("warning", field.id, "Continut dedus, fara justificare atasata.")
+                    Issue("warning", field.id, "Conținut dedus, fără justificare atașată.")
                 )
             issues.append(
-                Issue("info", field.id, "Continut dedus — de confirmat de specialist.")
+                Issue("info", field.id, "Conținut dedus — de confirmat de specialist.")
             )
         elif not evidence:
             # Valoare fara citat: nu putem urmari de unde vine.
             issues.append(
-                Issue("warning", field.id, "Valoare completata fara citat justificativ.")
+                Issue("warning", field.id, "Valoare completată fără citat justificativ.")
             )
         else:
             ratio = _match_ratio(_normalize(evidence), normalized_transcript)
@@ -100,8 +100,8 @@ def validate(
                     Issue(
                         "error",
                         field.id,
-                        "Citatul nu se regaseste in transcriere "
-                        f"(potrivire {ratio:.0%}): {evidence!r}. Posibila informatie inventata.",
+                        "Citatul nu se regăsește în transcriere "
+                        f"(potrivire {ratio:.0%}): {evidence!r}. Posibilă informație inventată.",
                     )
                 )
 
@@ -110,28 +110,28 @@ def validate(
                 Issue(
                     "error",
                     field.id,
-                    f"Valoarea {value!r} nu este in lista permisa: {field.options}.",
+                    f"Valoarea {value!r} nu este în lista permisă: {field.options}.",
                 )
             )
 
         if field.type == "date" and isinstance(value, str):
             if not ISO_DATE.match(value):
                 issues.append(
-                    Issue("error", field.id, f"Data {value!r} nu e in format AAAA-LL-ZZ.")
+                    Issue("error", field.id, f"Data {value!r} nu e în format AAAA-LL-ZZ.")
                 )
             elif value > today:
-                issues.append(Issue("warning", field.id, f"Data {value} este in viitor."))
+                issues.append(Issue("warning", field.id, f"Data {value} este în viitor."))
 
         if field.type == "table" and isinstance(value, list):
             allowed = {c.id for c in field.columns}
             for i, row in enumerate(value, start=1):
                 if not isinstance(row, dict):
-                    issues.append(Issue("error", field.id, f"Randul {i} nu este un obiect."))
+                    issues.append(Issue("error", field.id, f"Rândul {i} nu este un obiect."))
                     continue
                 extra = set(row) - allowed
                 if extra:
                     issues.append(
-                        Issue("error", field.id, f"Randul {i} are coloane necunoscute: {sorted(extra)}.")
+                        Issue("error", field.id, f"Rândul {i} are coloane necunoscute: {sorted(extra)}.")
                     )
 
     return issues

@@ -29,7 +29,20 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "-t", "--template", default=str(DEFAULT_TEMPLATE), help="Template-ul YAML de raport."
     )
-    parser.add_argument("-o", "--output", help="Fisierul de raport (implicit: stdout).")
+    parser.add_argument(
+        "-o",
+        "--output",
+        help="Fisierul de raport. Extensia decide formatul: .pdf sau .md (implicit: stdout).",
+    )
+    parser.add_argument(
+        "--format",
+        choices=["md", "pdf"],
+        help="Forteaza formatul, ignorand extensia fisierului de iesire.",
+    )
+    parser.add_argument(
+        "--font",
+        help="Font TTF pentru PDF. Implicit se cauta unul de sistem cu diacritice romanesti.",
+    )
     parser.add_argument(
         "--asr",
         default="faster-whisper",
@@ -104,7 +117,32 @@ def main(argv: list[str] | None = None) -> int:
             json.dumps(result.extraction, ensure_ascii=False, indent=2), encoding="utf-8"
         )
 
-    if args.output:
+    output_format = args.format
+    if output_format is None:
+        output_format = (
+            "pdf" if args.output and Path(args.output).suffix.lower() == ".pdf" else "md"
+        )
+
+    if output_format == "pdf":
+        if not args.output:
+            print("Eroare: PDF-ul are nevoie de --output.", file=sys.stderr)
+            return 2
+        from .fonts import FontError
+        from .render_pdf import render_pdf
+
+        try:
+            render_pdf(
+                template,
+                result.extraction,
+                args.output,
+                issues=result.issues,
+                font_path=args.font,
+            )
+        except FontError as exc:
+            print(f"Eroare de font:\n{exc}", file=sys.stderr)
+            return 3
+        print(f"Raport PDF scris in {args.output}", file=sys.stderr)
+    elif args.output:
         Path(args.output).write_text(result.report_markdown, encoding="utf-8")
         print(f"Raport scris in {args.output}", file=sys.stderr)
     else:
@@ -113,7 +151,7 @@ def main(argv: list[str] | None = None) -> int:
     counts = result.issue_counts
     print(
         f"\nValidare: {counts['error']} erori, {counts['warning']} avertismente, "
-        f"{counts['info']} campuri nementionate "
+        f"{counts['info']} câmpuri nemenționate "
         f"(ASR {result.timings['asr_s']:.1f}s, extragere {result.timings['extract_s']:.1f}s)",
         file=sys.stderr,
     )

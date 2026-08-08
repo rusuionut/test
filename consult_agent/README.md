@@ -48,15 +48,17 @@ export ANTHROPIC_API_KEY=...           # sau: ant auth login
 Rularea normală, cu audio real:
 
 ```bash
-python -m consult_agent.cli sedinta.m4a \
-  --template templates/terapie_craniosacrala.yaml \
-  -o raport.md
+python -m consult_agent.cli sedinta.m4a -o raport.pdf     # PDF
+python -m consult_agent.cli sedinta.m4a -o raport.md      # Markdown
 ```
+
+Formatul se deduce din extensia fișierului (`--format md|pdf` forțează).
 
 Opțiuni utile:
 
 | Flag | Ce face |
 |---|---|
+| `--font /cale/font.ttf` | Fontul PDF, dacă cel găsit automat nu convine |
 | `--asr-model medium` | Model Whisper mai mic/rapid (implicit `large-v3`) |
 | `--effort medium` | Reduce costul extragerii (implicit `high`) |
 | `--save-extraction x.json` | Salvează extragerea brută, cu citate |
@@ -102,6 +104,26 @@ finalul raportului, iar câmpurile fără informație apar explicit ca
 Validarea verifică în plus: câmpurile obligatorii, valorile enum, formatul
 datelor calendaristice (ISO, fără date în viitor) și coloanele tabelelor.
 
+## Export PDF și fonturi
+
+PDF-ul se generează direct din datele structurate, nu prin conversie din Markdown —
+un parser în plus ar fi o sursă în plus de erori într-un document trimis clientului.
+Secțiunile deduse rămân marcate și în PDF.
+
+**Fontul contează.** Fonturile PDF standard (Helvetica, Times) și cel livrat cu
+reportlab sunt Latin-1: nu conțin **ă, ș, ț**. Un raport cu glife lipsă e mai rău
+decât o eroare clară, așa că aplicația caută un font pe sistem și *verifică*
+acoperirea diacriticelor înainte să-l folosească. Dacă nu găsește niciunul,
+refuză explicit și spune cum se rezolvă:
+
+```
+Linux : sudo apt install fonts-dejavu-core
+oricând: --font /cale/catre/font.ttf   sau   CONSULT_AGENT_FONT=/cale/font.ttf
+```
+
+Testele acoperă și cazul invers: un font indicat manual care nu poate reda româna
+este respins, nu acceptat tăcut.
+
 ## Limbaj și terminologie
 
 Dictarea e telegrafică și colocvială („gemenii", „sacroiliace"); raportul trebuie
@@ -121,6 +143,8 @@ src/consult_agent/
   extract/       claude (API, structured outputs) | offline (JSON pre-existent)
   validate.py    Câmpuri obligatorii, citate, enum-uri, date, tabele
   render.py      Template + extragere → Markdown
+  render_pdf.py  Template + extragere → PDF (reportlab)
+  fonts.py       Găsirea și verificarea unui font cu diacritice românești
   pipeline.py    Lanțul complet
   cli.py         Linia de comandă
 ```
@@ -131,6 +155,7 @@ deci se pot adăuga backend-uri noi fără să atingi pipeline-ul.
 ## Teste
 
 ```bash
+pip install -r requirements-dev.txt
 python -m pytest tests/ -q
 ```
 
@@ -142,7 +167,9 @@ Testele rulează lanțul complet fără audio și fără apel de rețea.
   în transcriere ca text continuu, fără atribuire.
 - Nu există istoric între ședințe: fiecare raport se generează independent, fără
   comparație cu evaluările anterioare ale aceluiași client.
-- Ieșirea e Markdown. Fără export DOCX/PDF și fără integrare cu un sistem de
-  evidență a clienților.
+- Ieșire Markdown și PDF. Fără DOCX și fără integrare cu un sistem de evidență
+  a clienților.
+- Un singur raport per ședință: nu există o variantă separată pentru client și
+  una internă, mai tehnică.
 - Raportul necesită verificarea și asumarea specialistului înainte de a fi
   transmis.

@@ -8,7 +8,7 @@ from typing import Any
 from .schema import Field, Template
 from .validate import Issue
 
-MISSING = "_(nementionat)_"
+MISSING = "_(nemenționat)_"
 
 
 def _format_scalar(field: Field, value: Any) -> str:
@@ -75,8 +75,8 @@ def render_markdown(
         if section.is_derived:
             # Cititorul trebuie sa distinga ce s-a constatat de ce s-a dedus.
             lines += [
-                "> Sectiune formulata prin interpretarea observatiilor de mai sus, "
-                "nu constatata direct in timpul sedintei.",
+                "> Secțiune formulată prin interpretarea observațiilor de mai sus, "
+                "nu constatată direct în timpul ședinței.",
                 "",
             ]
         for field in section.fields:
@@ -85,7 +85,7 @@ def render_markdown(
 
     blocking = [i for i in (issues or []) if i.severity in ("error", "warning")]
     if blocking:
-        lines += ["---", "", "## De verificat de catre medic", ""]
+        lines += ["---", "", "## De verificat", ""]
         lines += [f"- **{i.severity.upper()}** — {i.message}" for i in blocking]
         lines.append("")
 

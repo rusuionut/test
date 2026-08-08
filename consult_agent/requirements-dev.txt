@@ -1,0 +1,4 @@
+pytest>=8.0
+# Citirea PDF-ului generat, pentru testul de diacritice.
+# Fara el, testul respectiv este sarit, nu esuat.
+pypdfium2>=4.0

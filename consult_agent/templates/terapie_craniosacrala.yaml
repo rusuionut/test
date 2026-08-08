@@ -4,11 +4,14 @@
 # fiecare cu citat verificat) urmate de doua sectiuni deduse (directii de lucru,
 # consecinte functionale), marcate ca atare in document.
 #
+# Tot ce e vizibil in raport (titluri, etichete, descrieri) se scrie cu diacritice:
+# textul acesta ajunge ca atare in documentul trimis clientului.
+#
 # Tipuri: string | text | integer | number | boolean | date | list | table
 # mode: observed (implicit, cere citat din inregistrare) | derived (dedus)
 
-name: Raport de evaluare functionala si observatii din sedinta
-specialty: Terapie Craniosacrala
+name: Raport de evaluare funcțională și observații din ședință
+specialty: Terapie Craniosacrală
 language: ro
 version: "1"
 
@@ -21,15 +24,15 @@ sections:
         type: string
         required: true
       - id: data_sedintei
-        label: Data sedintei
+        label: Data ședinței
         type: date
         required: true
       - id: tip_sedinta
-        label: Tipul sedintei
+        label: Tipul ședinței
         type: string
-        description: Ex. Terapie Craniosacrala, evaluare posturala.
+        description: Ex. Terapie Craniosacrală, evaluare posturală.
       - id: numar_sedinta
-        label: Numarul sedintei
+        label: Numărul ședinței
         type: integer
       - id: terapeut
         label: Terapeut
@@ -38,11 +41,11 @@ sections:
         label: Aspecte relatate de client
         type: list
         description: >
-          Ce a confirmat sau a relatat clientul in timpul sedintei (simptome,
+          Ce a confirmat sau a relatat clientul în timpul ședinței (simptome,
           episoade anterioare, obiceiuri). Doar ce a spus clientul, nu ce s-a palpat.
 
   - id: observatii_generale
-    title: Observatii generale
+    title: Observații generale
     fields:
       - id: tonus_general
         label: Tonus muscular general
@@ -50,32 +53,32 @@ sections:
       - id: respiratie
         label: Model respirator
         type: string
-        description: Tipul de respiratie observat in decubit (abdominala, toracica, mixta).
+        description: Tipul de respirație observat în decubit (abdominală, toracică, mixtă).
       - id: alte_observatii_generale
-        label: Alte observatii generale
+        label: Alte observații generale
         type: text
 
   - id: fascial
-    title: Observatii fasciale si miofasciale
-    description: Trasee de tensiune identificate prin tehnici de evaluare fasciala.
+    title: Observații fasciale și miofasciale
+    description: Trasee de tensiune identificate prin tehnici de evaluare fascială.
     fields:
       - id: traseu_tensiune
         label: Traseul principal de tensiune
         type: text
         description: >
-          Descrierea traseului fascial tensionat, in ordinea in care a fost palpat
-          (punct de plecare, directie, zone traversate).
+          Descrierea traseului fascial tensionat, în ordinea în care a fost palpat
+          (punct de plecare, direcție, zone traversate).
       - id: zone_tensionate
-        label: Zone cu tensiune crescuta
+        label: Zone cu tensiune crescută
         type: list
-        description: Regiunile anatomice unde s-a perceput tensiune fasciala crescuta.
+        description: Regiunile anatomice unde s-a perceput tensiune fascială crescută.
       - id: corelatii_simptome
-        label: Corelatii cu simptomele relatate
+        label: Corelații cu simptomele relatate
         type: text
-        description: Legaturile observate intre zonele tensionate si ce a confirmat clientul.
+        description: Legăturile observate între zonele tensionate și ce a confirmat clientul.
 
   - id: visceral
-    title: Zona abdominala si viscerala
+    title: Zona abdominală și viscerală
     fields:
       - id: observatii_colon
         label: Traseul colonului
@@ -87,11 +90,11 @@ sections:
           - id: localizare
             label: Localizare
           - id: tip
-            label: Provenienta
+            label: Proveniență
           - id: caracteristici
             label: Caracteristici fasciale
       - id: alte_observatii_viscerale
-        label: Alte observatii viscerale
+        label: Alte observații viscerale
         type: text
 
   - id: bazin
@@ -101,20 +104,20 @@ sections:
         label: Mobilitatea bazinului
         type: text
       - id: articulatii_sacroiliace
-        label: Articulatiile sacroiliace
+        label: Articulațiile sacroiliace
         type: string
 
   - id: membre_inferioare
-    title: Membre inferioare si sprijin plantar
+    title: Membre inferioare și sprijin plantar
     fields:
       - id: musculatura_hipertona
-        label: Musculatura hipertona
+        label: Musculatură hipertonă
         type: list
       - id: musculatura_hipotona
-        label: Musculatura hipotona
+        label: Musculatură hipotonă
         type: list
       - id: fascia_plantara
-        label: Fascia plantara
+        label: Fascia plantară
         type: string
       - id: tendon_ahilian
         label: Tendonul ahilian
@@ -126,63 +129,63 @@ sections:
         label: Arc longitudinal intern
         type: string
       - id: deformari_degete
-        label: Deformari ale degetelor
+        label: Deformări ale degetelor
         type: string
       - id: alte_observatii_membre
-        label: Alte observatii
+        label: Alte observații
         type: text
 
   - id: lanturi
-    title: Lanturi musculare
+    title: Lanțuri musculare
     fields:
       - id: lant_posterior
-        label: Lantul muscular posterior
+        label: Lanțul muscular posterior
         type: string
       - id: alte_lanturi
-        label: Alte lanturi implicate
+        label: Alte lanțuri implicate
         type: text
 
   # --- de aici in jos: continut formulat de model, nu constatat in sedinta ---
 
   - id: directii_de_lucru
-    title: Directii de lucru terapeutic
+    title: Direcții de lucru terapeutic
     mode: derived
-    description: Prioritati propuse pentru sedintele urmatoare, pe baza observatiilor de mai sus.
+    description: Priorități propuse pentru ședințele următoare, pe baza observațiilor de mai sus.
     fields:
       - id: prioritati
-        label: Prioritati pentru sedintele urmatoare
+        label: Priorități pentru ședințele următoare
         type: list
         required: true
         description: >
-          Directii concrete de interventie, formulate ca actiuni terapeutice
-          (ex. "normalizarea tensiunilor fasciale cranio-cervicale"). Fiecare
-          directie trebuie sa corespunda unei observatii consemnate in raport.
+          Direcții concrete de intervenție, formulate ca acțiuni terapeutice
+          (ex. „normalizarea tensiunilor fasciale cranio-cervicale"). Fiecare
+          direcție trebuie să corespundă unei observații consemnate în raport.
       - id: recomandari_client
-        label: Recomandari pentru client intre sedinte
+        label: Recomandări pentru client între ședințe
         type: list
         description: >
           Sugestii pe care clientul le poate aplica singur (mobilitate, hidratare,
-          respiratie). Fara indicatii medicamentoase si fara restrictii medicale.
+          respirație). Fără indicații medicamentoase și fără restricții medicale.
 
   - id: consecinte
-    title: Posibile consecinte functionale
+    title: Posibile consecințe funcționale
     mode: derived
-    description: Ce pot antrena in timp dezechilibrele observate, daca persista.
+    description: Ce pot antrena în timp dezechilibrele observate, dacă persistă.
     fields:
       - id: consecinte_posibile
-        label: Consecinte posibile in absenta interventiei
+        label: Consecințe posibile în absența intervenției
         type: list
         required: true
         description: >
-          Formulare prudenta, la nivel functional ("poate contribui la",
-          "poate favoriza"). Nu prognostic medical, nu afirmatii de cauzalitate certa.
+          Formulare prudentă, la nivel funcțional („poate contribui la",
+          „poate favoriza"). Nu prognostic medical, nu afirmații de cauzalitate certă.
 
 disclaimer: >
-  Raport generat automat dintr-o inregistrare audio. Necesita verificarea si
-  asumarea terapeutului inainte de a fi transmis clientului.
+  Raport generat automat dintr-o înregistrare audio. Necesită verificarea și
+  asumarea terapeutului înainte de a fi transmis clientului.
 
 footer: |
-  Aceste observatii nu reprezinta un diagnostic medical. Ele descriu modul in care
-  organismul functioneaza si se adapteaza in prezent. Obiectivul terapiei este
-  reducerea progresiva a tensiunilor, imbunatatirea mobilitatii si restabilirea unui
-  echilibru functional cat mai eficient.
+  Aceste observații nu reprezintă un diagnostic medical. Ele descriu modul în care
+  organismul funcționează și se adaptează în prezent. Obiectivul terapiei este
+  reducerea progresivă a tensiunilor, îmbunătățirea mobilității și restabilirea unui
+  echilibru funcțional cât mai eficient.
