@@ -1,0 +1,165 @@
+{
+  "nume_client": {
+    "value": "Elena Marinescu",
+    "evidence": "prima sedinta cu Elena Marinescu"
+  },
+  "data_sedintei": {
+    "value": "2026-08-08",
+    "evidence": "opt august doua mii douazeci si sase"
+  },
+  "tip_sedinta": {
+    "value": "Terapie Craniosacrală, cu evaluare posturală",
+    "evidence": "terapie craniosacrala, prima sedinta"
+  },
+  "numar_sedinta": {
+    "value": 1,
+    "evidence": "prima sedinta cu Elena Marinescu"
+  },
+  "terapeut": {
+    "value": "Ioana Radu",
+    "evidence": "Terapeut Ioana Radu"
+  },
+  "istoric_relatat": {
+    "value": [
+      "Episoade ocazionale de infecții urinare și disconfort urinar",
+      "Tranzit intestinal încetinit — nu are scaun zilnic",
+      "Apendicectomie în antecedente"
+    ],
+    "evidence": "Confirma ca se confrunta uneori cu infectii urinare sau cu disconfort"
+  },
+  "tonus_general": {
+    "value": "Tonus muscular general crescut (hipertonie globală), observat încă de la începutul ședinței",
+    "evidence": "are un tonus muscular general crescut al corpului"
+  },
+  "respiratie": {
+    "value": "Respirație predominant abdominală în decubit — aspect favorabil, indicând o implicare eficientă a diafragmului",
+    "evidence": "respiratia este abdominala, ceea ce e un mare plus"
+  },
+  "alte_observatii_generale": {
+    "value": null,
+    "evidence": null
+  },
+  "traseu_tensiune": {
+    "value": "Traseul de tensiune pornește din regiunea cranio-cervicală dreaptă, se continuă către centura scapulo-humerală dreaptă, apoi coboară în diagonală spre partea stângă a trunchiului, până la nivelul fasciei renale și vezicale.",
+    "evidence": "se duce spre centura scapulo-humerala dreapta, apoi coboara in diagonala spre stanga"
+  },
+  "zone_tensionate": {
+    "value": [
+      "Regiunea cranio-cervicală dreaptă",
+      "Centura scapulo-humerală dreaptă",
+      "Fascia renală și vezicală, pe partea stângă"
+    ],
+    "evidence": "partea cranio-cervicala dreapta este mai tensionata"
+  },
+  "corelatii_simptome": {
+    "value": "Tensiunea fascială percepută la nivelul rinichiului și vezicii urinare se corelează cu episoadele ocazionale de infecții urinare și disconfort urinar relatate de clientă.",
+    "evidence": "s-a simtit tensiune pe fascia rinichilor si a vezicii"
+  },
+  "observatii_colon": {
+    "value": "Pe întregul traseu al colonului s-a perceput o stare inflamatorie și o congestie fascială crescută, compatibilă cu tranzitul intestinal încetinit relatat de clientă.",
+    "evidence": "Toata zona colonului s-a simtit mai inflamata"
+  },
+  "cicatrici": {
+    "value": [
+      {
+        "localizare": "Abdominală, fosa iliacă dreaptă",
+        "tip": "Post-apendicectomie",
+        "caracteristici": "Activă fascial, cu volum crescut și aderențe în țesuturile din jur"
+      }
+    ],
+    "evidence": "Cicatrice abdominala, de la apendicectomie, activa si cu volum crescut"
+  },
+  "alte_observatii_viscerale": {
+    "value": null,
+    "evidence": null
+  },
+  "mobilitate_bazin": {
+    "value": "Mobilitate redusă la nivelul bazinului, cu limitare accentuată în special la nivelul articulațiilor sacroiliace.",
+    "evidence": "Mobilitate scazuta la nivelul bazinului"
+  },
+  "articulatii_sacroiliace": {
+    "value": "Mobilitate redusă bilateral",
+    "evidence": "cu atat mai mult la articulatiile sacroiliace"
+  },
+  "musculatura_hipertona": {
+    "value": [
+      "Musculatura posterioară a gambelor — gastrocnemian și solear"
+    ],
+    "evidence": "gemenii si solearul, hipertona"
+  },
+  "musculatura_hipotona": {
+    "value": [
+      "Musculatura anterioară a gambelor — tibial anterior și extensorii degetelor"
+    ],
+    "evidence": "tibialul anterior si extensorii, hipotona"
+  },
+  "fascia_plantara": {
+    "value": "Scurtată",
+    "evidence": "Fascia plantara scurtata"
+  },
+  "tendon_ahilian": {
+    "value": "Discret scurtat",
+    "evidence": "discreta scurtare a tendonului ahilian"
+  },
+  "arc_transversal": {
+    "value": "Prăbușit",
+    "evidence": "Arcul plantar transversal prabusit"
+  },
+  "arc_longitudinal": {
+    "value": "Accentuat",
+    "evidence": "arcul longitudinal intern accentuat"
+  },
+  "deformari_degete": {
+    "value": "Degete în ciocan",
+    "evidence": "degete in ciocan"
+  },
+  "alte_observatii_membre": {
+    "value": null,
+    "evidence": null
+  },
+  "lant_posterior": {
+    "value": "Tonus crescut pe tot lanțul muscular posterior, de la nivel cervical până la membrele inferioare",
+    "evidence": "Lantul muscular posterior cu tonus crescut"
+  },
+  "alte_lanturi": {
+    "value": null,
+    "evidence": null
+  },
+  "prioritati": {
+    "value": [
+      "Normalizarea tensiunilor fasciale cranio-cervicale drepte",
+      "Echilibrarea traseului miofascial descris, cu atenție la trecerea în diagonală spre partea stângă",
+      "Mobilizarea bazinului și a articulațiilor sacroiliace",
+      "Eliberarea aderențelor de la nivelul cicatricei post-apendicectomie",
+      "Îmbunătățirea mobilității fasciale abdominale și viscerale, pe traseul colonului",
+      "Normalizarea raportului de tonus între musculatura posterioară și cea anterioară a gambelor",
+      "Optimizarea mecanicii plantare și a sprijinului, cu lucru pe fascia plantară scurtată",
+      "Reducerea progresivă a tonusului lanțului muscular posterior"
+    ],
+    "evidence": "Fiecare direcție corespunde unei observații consemnate: tensiunea cranio-cervicală dreaptă și traseul fascial, mobilitatea redusă a bazinului și sacroiliacelor, cicatricea activă, congestia pe traseul colonului, dezechilibrul hiperton/hipoton la gambe, fascia plantară scurtată și tonusul lanțului posterior."
+  },
+  "recomandari_client": {
+    "value": [
+      "Hidratare adecvată, care susține efectul lucrului fascial în zilele de după ședință",
+      "Mobilizări blânde ale bazinului, în amplitudini nedureroase",
+      "Menținerea și conștientizarea respirației abdominale, deja prezentă ca model funcțional",
+      "Automasaj blând al tălpii, pentru fascia plantară scurtată",
+      "Evitarea menținerii îndelungate a aceleiași poziții, care întreține tonusul crescut al lanțului posterior"
+    ],
+    "evidence": "Recomandări derivate din tensiunea globală crescută, mobilitatea redusă a bazinului, fascia plantară scurtată și modelul respirator abdominal deja funcțional, care merită menținut."
+  },
+  "consecinte_posibile": {
+    "value": [
+      "Suprasolicitarea permanentă a musculaturii, cu oboseală musculară și capacitate redusă de relaxare",
+      "Limitarea progresivă a mobilității coloanei și a bazinului",
+      "Apariția sau accentuarea durerilor cervicale, dorsale ori lombare",
+      "Modificarea mecanicii mersului și a distribuției presiunilor plantare, prin prăbușirea arcului transversal",
+      "Suprasolicitarea genunchilor, șoldurilor și coloanei vertebrale",
+      "Diminuarea eficienței de absorbție a șocurilor în timpul mersului",
+      "Dificultate în relaxarea sistemului nervos, cu menținerea unei stări generale de tensiune",
+      "Influențarea mobilității viscerale, cu posibil impact asupra tranzitului intestinal și a confortului abdominal",
+      "Menținerea unor tensiuni compensatorii în întregul corp, prin adaptări succesive ale lanțurilor miofasciale"
+    ],
+    "evidence": "Consecințe funcționale posibile ale hipertoniei generale, ale tonusului crescut pe lanțul posterior, ale mobilității reduse a bazinului, ale dezechilibrului muscular la nivelul gambelor cu prăbușirea arcului transversal, și ale congestiei fasciale abdominale."
+  }
+}

@@ -77,8 +77,19 @@ def validate(
             issues.append(Issue("info", field.id, "Nementionat in inregistrare."))
             continue
 
-        # Valoare fara citat: nu putem urmari de unde vine.
-        if not evidence:
+        if field.is_derived:
+            # Continut dedus: nu are corespondent literal in transcriere, deci
+            # verificarea prin potrivire nu se aplica. Cerem doar justificarea,
+            # iar raportul il marcheaza vizibil ca dedus.
+            if not evidence:
+                issues.append(
+                    Issue("warning", field.id, "Continut dedus, fara justificare atasata.")
+                )
+            issues.append(
+                Issue("info", field.id, "Continut dedus — de confirmat de specialist.")
+            )
+        elif not evidence:
+            # Valoare fara citat: nu putem urmari de unde vine.
             issues.append(
                 Issue("warning", field.id, "Valoare completata fara citat justificativ.")
             )

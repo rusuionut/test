@@ -70,6 +70,15 @@ def render_markdown(
     for section in template.sections:
         lines.append(f"## {section.title}")
         lines.append("")
+        if section.description:
+            lines += [f"_{section.description}_", ""]
+        if section.is_derived:
+            # Cititorul trebuie sa distinga ce s-a constatat de ce s-a dedus.
+            lines += [
+                "> Sectiune formulata prin interpretarea observatiilor de mai sus, "
+                "nu constatata direct in timpul sedintei.",
+                "",
+            ]
         for field in section.fields:
             lines += _render_field(field, extraction.get(field.id, {}))
         lines.append("")
@@ -83,13 +92,8 @@ def render_markdown(
     if template.footer:
         lines += ["---", "", template.footer, ""]
 
-    lines += [
-        "---",
-        "",
-        "> Raport generat automat dintr-o inregistrare audio. Necesita verificare "
-        "si semnatura medicului inainte de a fi folosit ca document clinic.",
-        "",
-    ]
+    if template.disclaimer:
+        lines += ["---", "", f"> {template.disclaimer.strip()}", ""]
 
     if transcript:
         lines += [

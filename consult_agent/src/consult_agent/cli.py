@@ -12,7 +12,9 @@ from .extract import get_extractor
 from .pipeline import run
 from .schema import load_template
 
-DEFAULT_TEMPLATE = Path(__file__).resolve().parents[2] / "templates" / "consult_medical.yaml"
+DEFAULT_TEMPLATE = (
+    Path(__file__).resolve().parents[2] / "templates" / "terapie_craniosacrala.yaml"
+)
 
 
 def build_parser() -> argparse.ArgumentParser:

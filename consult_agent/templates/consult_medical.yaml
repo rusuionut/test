@@ -168,5 +168,9 @@ sections:
         type: string
         description: Trimitere catre alta specialitate sau decizie de internare.
 
+disclaimer: >
+  Raport generat automat dintr-o inregistrare audio. Necesita verificare si
+  semnatura medicului inainte de a fi folosit ca document clinic.
+
 footer: |
   Document generat automat. Verificat si asumat de medicul curant prin semnatura.

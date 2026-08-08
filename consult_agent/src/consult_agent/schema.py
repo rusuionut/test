@@ -60,6 +60,13 @@ class Field:
     options: list[str] = dc_field(default_factory=list)
     columns: list[Column] = dc_field(default_factory=list)
     unit: str = ""
+    # "observed" = extras din inregistrare, cu citat verificat mecanic.
+    # "derived"  = dedus de model din observatii; marcat ca atare in raport.
+    mode: str = "observed"
+
+    @property
+    def is_derived(self) -> bool:
+        return self.mode == "derived"
 
     def prompt_hint(self) -> str:
         """Descrierea trimisa modelului pentru acest camp."""
@@ -75,6 +82,11 @@ class Field:
             bits.append(f"Lista de obiecte cu cheile: {cols}.")
         if self.required:
             bits.append("Camp obligatoriu in raport.")
+        if self.is_derived:
+            bits.append(
+                "CAMP DEDUS: nu se extrage din inregistrare, ci se formuleaza pe baza "
+                "observatiilor consemnate mai sus."
+            )
         return " ".join(b for b in bits if b)
 
     def value_schema(self) -> dict[str, Any]:
@@ -108,7 +120,13 @@ class Section:
     id: str
     title: str
     description: str = ""
+    # Modul implicit pentru campurile sectiunii; fiecare camp il poate suprascrie.
+    mode: str = "observed"
     fields: list[Field] = dc_field(default_factory=list)
+
+    @property
+    def is_derived(self) -> bool:
+        return bool(self.fields) and all(f.is_derived for f in self.fields)
 
 
 @dataclass
@@ -118,6 +136,10 @@ class Template:
     sections: list[Section]
     specialty: str = ""
     footer: str = ""
+    disclaimer: str = (
+        "Raport generat automat dintr-o inregistrare audio. Necesita verificare de "
+        "catre specialist inainte de a fi transmis sau folosit ca document."
+    )
     version: str = "1"
 
     @property
@@ -131,9 +153,17 @@ class Template:
         return None
 
 
-def _parse_field(raw: dict[str, Any], section_id: str) -> Field:
+VALID_MODES = ("observed", "derived")
+
+
+def _parse_field(raw: dict[str, Any], section_id: str, section_mode: str) -> Field:
     if "id" not in raw:
         raise TemplateError(f"Sectiunea '{section_id}': un camp nu are 'id'.")
+    mode = raw.get("mode", section_mode)
+    if mode not in VALID_MODES:
+        raise TemplateError(
+            f"Campul '{raw['id']}': mode '{mode}' invalid (observed | derived)."
+        )
     columns = [
         Column(
             id=c["id"],
@@ -152,6 +182,7 @@ def _parse_field(raw: dict[str, Any], section_id: str) -> Field:
         options=list(raw.get("options", [])),
         columns=columns,
         unit=raw.get("unit", ""),
+        mode=mode,
     )
 
 
@@ -165,12 +196,20 @@ def load_template(path: str | Path) -> Template:
     for s in raw.get("sections", []):
         if "id" not in s:
             raise TemplateError("O sectiune nu are 'id'.")
+        section_mode = s.get("mode", "observed")
+        if section_mode not in VALID_MODES:
+            raise TemplateError(
+                f"Sectiunea '{s['id']}': mode '{section_mode}' invalid (observed | derived)."
+            )
         sections.append(
             Section(
                 id=s["id"],
                 title=s.get("title", s["id"]),
                 description=s.get("description", ""),
-                fields=[_parse_field(f, s["id"]) for f in s.get("fields", [])],
+                mode=section_mode,
+                fields=[
+                    _parse_field(f, s["id"], section_mode) for f in s.get("fields", [])
+                ],
             )
         )
     if not sections:
@@ -183,6 +222,7 @@ def load_template(path: str | Path) -> Template:
         footer=raw.get("footer", ""),
         version=str(raw.get("version", "1")),
         sections=sections,
+        **({"disclaimer": raw["disclaimer"]} if raw.get("disclaimer") else {}),
     )
 
     ids = [f.id for f in template.all_fields]
@@ -198,10 +238,25 @@ def load_template(path: str | Path) -> Template:
 def build_extraction_schema(template: Template) -> dict[str, Any]:
     """Construieste schema JSON pe care modelul trebuie sa o respecte.
 
-    Fiecare camp devine `{"value": ..., "evidence": ...}`. `evidence` este citatul
-    exact din transcriere care justifica valoarea -- il folosim ulterior ca sa
-    verificam ca modelul nu a inventat informatie (vezi validate.verify_evidence).
+    Fiecare camp devine `{"value": ..., "evidence": ...}`. Semantica lui `evidence`
+    depinde de modul campului:
+
+    * `observed` -- citat literal din transcriere. Il verificam mecanic in
+      `validate.py`, deci un camp completat fara suport in inregistrare iese la
+      iveala indiferent ce sustine modelul.
+    * `derived`  -- justificarea rationamentului, cu trimitere la observatiile pe
+      care se sprijina. Nu se poate verifica prin potrivire de text, dar face
+      deductia auditabila de catre terapeut.
     """
+    observed_evidence = (
+        "Citat literal si scurt din transcriere care sustine valoarea. "
+        "null daca informatia nu apare in transcriere."
+    )
+    derived_evidence = (
+        "Justificarea deductiei: pe ce observatii consemnate in raport se sprijina. "
+        "Nu inventa un citat din transcriere pentru un camp dedus."
+    )
+
     properties: dict[str, Any] = {}
     for f in template.all_fields:
         properties[f.id] = {
@@ -211,10 +266,7 @@ def build_extraction_schema(template: Template) -> dict[str, Any]:
                 "value": f.value_schema(),
                 "evidence": {
                     "anyOf": [{"type": "string"}, {"type": "null"}],
-                    "description": (
-                        "Citat literal si scurt din transcriere care sustine valoarea. "
-                        "null daca informatia nu apare in transcriere."
-                    ),
+                    "description": derived_evidence if f.is_derived else observed_evidence,
                 },
             },
             "required": ["value", "evidence"],

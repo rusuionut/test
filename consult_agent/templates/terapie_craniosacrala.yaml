@@ -1,0 +1,188 @@
+# Raport de evaluare functionala — Terapie Craniosacrala.
+#
+# Structura urmeaza raportul redactat manual: observatii (extrase din dictare,
+# fiecare cu citat verificat) urmate de doua sectiuni deduse (directii de lucru,
+# consecinte functionale), marcate ca atare in document.
+#
+# Tipuri: string | text | integer | number | boolean | date | list | table
+# mode: observed (implicit, cere citat din inregistrare) | derived (dedus)
+
+name: Raport de evaluare functionala si observatii din sedinta
+specialty: Terapie Craniosacrala
+language: ro
+version: "1"
+
+sections:
+  - id: context
+    title: Date generale
+    fields:
+      - id: nume_client
+        label: Client
+        type: string
+        required: true
+      - id: data_sedintei
+        label: Data sedintei
+        type: date
+        required: true
+      - id: tip_sedinta
+        label: Tipul sedintei
+        type: string
+        description: Ex. Terapie Craniosacrala, evaluare posturala.
+      - id: numar_sedinta
+        label: Numarul sedintei
+        type: integer
+      - id: terapeut
+        label: Terapeut
+        type: string
+      - id: istoric_relatat
+        label: Aspecte relatate de client
+        type: list
+        description: >
+          Ce a confirmat sau a relatat clientul in timpul sedintei (simptome,
+          episoade anterioare, obiceiuri). Doar ce a spus clientul, nu ce s-a palpat.
+
+  - id: observatii_generale
+    title: Observatii generale
+    fields:
+      - id: tonus_general
+        label: Tonus muscular general
+        type: string
+      - id: respiratie
+        label: Model respirator
+        type: string
+        description: Tipul de respiratie observat in decubit (abdominala, toracica, mixta).
+      - id: alte_observatii_generale
+        label: Alte observatii generale
+        type: text
+
+  - id: fascial
+    title: Observatii fasciale si miofasciale
+    description: Trasee de tensiune identificate prin tehnici de evaluare fasciala.
+    fields:
+      - id: traseu_tensiune
+        label: Traseul principal de tensiune
+        type: text
+        description: >
+          Descrierea traseului fascial tensionat, in ordinea in care a fost palpat
+          (punct de plecare, directie, zone traversate).
+      - id: zone_tensionate
+        label: Zone cu tensiune crescuta
+        type: list
+        description: Regiunile anatomice unde s-a perceput tensiune fasciala crescuta.
+      - id: corelatii_simptome
+        label: Corelatii cu simptomele relatate
+        type: text
+        description: Legaturile observate intre zonele tensionate si ce a confirmat clientul.
+
+  - id: visceral
+    title: Zona abdominala si viscerala
+    fields:
+      - id: observatii_colon
+        label: Traseul colonului
+        type: text
+      - id: cicatrici
+        label: Cicatrici
+        type: table
+        columns:
+          - id: localizare
+            label: Localizare
+          - id: tip
+            label: Provenienta
+          - id: caracteristici
+            label: Caracteristici fasciale
+      - id: alte_observatii_viscerale
+        label: Alte observatii viscerale
+        type: text
+
+  - id: bazin
+    title: Bazin
+    fields:
+      - id: mobilitate_bazin
+        label: Mobilitatea bazinului
+        type: text
+      - id: articulatii_sacroiliace
+        label: Articulatiile sacroiliace
+        type: string
+
+  - id: membre_inferioare
+    title: Membre inferioare si sprijin plantar
+    fields:
+      - id: musculatura_hipertona
+        label: Musculatura hipertona
+        type: list
+      - id: musculatura_hipotona
+        label: Musculatura hipotona
+        type: list
+      - id: fascia_plantara
+        label: Fascia plantara
+        type: string
+      - id: tendon_ahilian
+        label: Tendonul ahilian
+        type: string
+      - id: arc_transversal
+        label: Arc plantar transversal
+        type: string
+      - id: arc_longitudinal
+        label: Arc longitudinal intern
+        type: string
+      - id: deformari_degete
+        label: Deformari ale degetelor
+        type: string
+      - id: alte_observatii_membre
+        label: Alte observatii
+        type: text
+
+  - id: lanturi
+    title: Lanturi musculare
+    fields:
+      - id: lant_posterior
+        label: Lantul muscular posterior
+        type: string
+      - id: alte_lanturi
+        label: Alte lanturi implicate
+        type: text
+
+  # --- de aici in jos: continut formulat de model, nu constatat in sedinta ---
+
+  - id: directii_de_lucru
+    title: Directii de lucru terapeutic
+    mode: derived
+    description: Prioritati propuse pentru sedintele urmatoare, pe baza observatiilor de mai sus.
+    fields:
+      - id: prioritati
+        label: Prioritati pentru sedintele urmatoare
+        type: list
+        required: true
+        description: >
+          Directii concrete de interventie, formulate ca actiuni terapeutice
+          (ex. "normalizarea tensiunilor fasciale cranio-cervicale"). Fiecare
+          directie trebuie sa corespunda unei observatii consemnate in raport.
+      - id: recomandari_client
+        label: Recomandari pentru client intre sedinte
+        type: list
+        description: >
+          Sugestii pe care clientul le poate aplica singur (mobilitate, hidratare,
+          respiratie). Fara indicatii medicamentoase si fara restrictii medicale.
+
+  - id: consecinte
+    title: Posibile consecinte functionale
+    mode: derived
+    description: Ce pot antrena in timp dezechilibrele observate, daca persista.
+    fields:
+      - id: consecinte_posibile
+        label: Consecinte posibile in absenta interventiei
+        type: list
+        required: true
+        description: >
+          Formulare prudenta, la nivel functional ("poate contribui la",
+          "poate favoriza"). Nu prognostic medical, nu afirmatii de cauzalitate certa.
+
+disclaimer: >
+  Raport generat automat dintr-o inregistrare audio. Necesita verificarea si
+  asumarea terapeutului inainte de a fi transmis clientului.
+
+footer: |
+  Aceste observatii nu reprezinta un diagnostic medical. Ele descriu modul in care
+  organismul functioneaza si se adapteaza in prezent. Obiectivul terapiei este
+  reducerea progresiva a tensiunilor, imbunatatirea mobilitatii si restabilirea unui
+  echilibru functional cat mai eficient.
