@@ -1,0 +1,3 @@
+# Transcriere locala offline. Prima rulare descarca modelul (~1.5 GB pentru large-v3)
+# de pe Hugging Face; dupa aceea totul ruleaza fara retea.
+faster-whisper>=1.2.0

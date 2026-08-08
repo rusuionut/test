@@ -1,0 +1,6 @@
+# Nucleu (necesar intotdeauna)
+PyYAML>=6.0
+anthropic>=0.121.0
+
+# Transcriere locala. Se instaleaza separat cu: pip install -r requirements-asr.txt
+# faster-whisper>=1.2.0

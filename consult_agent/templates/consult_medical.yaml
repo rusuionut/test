@@ -1,0 +1,172 @@
+# TEMPLATE PLACEHOLDER — de inlocuit cu template-ul real.
+#
+# Acest fisier este singura sursa de adevar pentru raport: din el se genereaza
+# automat si schema de extragere trimisa modelului, si documentul final. Ca sa
+# treci la template-ul tau, rescrii sectiunile de mai jos — codul nu se atinge.
+#
+# Tipuri de camp: string | text | integer | number | boolean | date | list | table
+# Optiuni per camp: label, type, required, description, options (enum), unit, columns (table)
+
+name: Raport consult medical
+specialty: Medicina interna
+language: ro
+version: "1"
+
+sections:
+  - id: identificare
+    title: Date de identificare
+    fields:
+      - id: nume_pacient
+        label: Nume si prenume
+        type: string
+        required: true
+        description: Numele complet al pacientului, asa cum e dictat.
+      - id: varsta
+        label: Varsta
+        type: integer
+        unit: ani
+      - id: sex
+        label: Sex
+        type: string
+        options: [feminin, masculin, nespecificat]
+      - id: cnp
+        label: CNP
+        type: string
+        description: Codul numeric personal, doar daca este dictat explicit.
+      - id: data_consultului
+        label: Data consultului
+        type: date
+        required: true
+      - id: medic
+        label: Medic curant
+        type: string
+
+  - id: motivul_prezentarii
+    title: Motivul prezentarii
+    fields:
+      - id: acuze_principale
+        label: Acuze principale
+        type: list
+        required: true
+        description: Simptomele pentru care s-a prezentat pacientul, cate unul pe element.
+      - id: debut
+        label: Debutul simptomatologiei
+        type: string
+        description: Cand si cum au debutat simptomele (ex. "in urma cu 3 zile, brusc").
+
+  - id: anamneza
+    title: Anamneza
+    fields:
+      - id: istoric_boala_actuala
+        label: Istoricul bolii actuale
+        type: text
+        required: true
+        description: Evolutia simptomelor pana la prezentare, in proza.
+      - id: antecedente_personale
+        label: Antecedente personale patologice
+        type: list
+        description: Boli cronice, interventii chirurgicale, internari anterioare.
+      - id: antecedente_heredocolaterale
+        label: Antecedente heredocolaterale
+        type: list
+      - id: medicatie_curenta
+        label: Medicatie curenta
+        type: table
+        columns:
+          - id: denumire
+            label: Medicament
+          - id: doza
+            label: Doza
+          - id: frecventa
+            label: Frecventa
+      - id: alergii
+        label: Alergii
+        type: list
+        description: Alergii medicamentoase sau de alta natura. Lasa gol daca nu se mentioneaza.
+      - id: consum_toxice
+        label: Consum de toxice
+        type: string
+        description: Fumat, alcool, alte substante — doar daca sunt mentionate.
+
+  - id: examen_clinic
+    title: Examen clinic obiectiv
+    fields:
+      - id: stare_generala
+        label: Stare generala
+        type: string
+      - id: ta_sistolica
+        label: TA sistolica
+        type: integer
+        unit: mmHg
+      - id: ta_diastolica
+        label: TA diastolica
+        type: integer
+        unit: mmHg
+      - id: puls
+        label: Alura ventriculara
+        type: integer
+        unit: bpm
+      - id: temperatura
+        label: Temperatura
+        type: number
+        unit: "°C"
+      - id: saturatie_oxigen
+        label: SpO2
+        type: integer
+        unit: "%"
+      - id: examen_pe_aparate
+        label: Examen pe aparate si sisteme
+        type: text
+        description: Constatarile obiective dictate (cardiovascular, respirator, abdominal etc.).
+
+  - id: investigatii
+    title: Investigatii
+    fields:
+      - id: investigatii_efectuate
+        label: Investigatii efectuate si rezultate
+        type: text
+        description: Analize sau explorari deja facute, cu rezultatele mentionate.
+      - id: investigatii_recomandate
+        label: Investigatii recomandate
+        type: list
+
+  - id: concluzii
+    title: Diagnostic si plan
+    fields:
+      - id: diagnostic_prezumtiv
+        label: Diagnostic prezumtiv
+        type: list
+        required: true
+        description: >
+          Diagnosticele formulate explicit de medic. Daca medicul nu a formulat un
+          diagnostic, campul ramane gol — nu se deduce din simptome.
+      - id: diagnostic_diferential
+        label: Diagnostic diferential
+        type: list
+      - id: tratament_recomandat
+        label: Tratament recomandat
+        type: table
+        columns:
+          - id: denumire
+            label: Medicament / masura
+          - id: doza
+            label: Doza
+          - id: frecventa
+            label: Frecventa
+          - id: durata
+            label: Durata
+      - id: recomandari
+        label: Recomandari generale
+        type: list
+        description: Regim, repaus, masuri igieno-dietetice, semne de alarma.
+      - id: reevaluare
+        label: Reevaluare
+        type: string
+        description: Cand si in ce conditii revine pacientul la control.
+      - id: trimitere
+        label: Trimitere / internare
+        type: string
+        description: Trimitere catre alta specialitate sau decizie de internare.
+
+footer: |
+  Document generat automat. Verificat si asumat de medicul curant prin semnatura.

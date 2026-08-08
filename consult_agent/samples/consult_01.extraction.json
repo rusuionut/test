@@ -1,0 +1,182 @@
+{
+  "nume_pacient": {
+    "value": "Maria Ionescu",
+    "evidence": "Pacienta Maria Ionescu"
+  },
+  "varsta": {
+    "value": 54,
+    "evidence": "cincizeci si patru de ani"
+  },
+  "sex": {
+    "value": "feminin",
+    "evidence": "Pacienta Maria Ionescu"
+  },
+  "cnp": {
+    "value": null,
+    "evidence": null
+  },
+  "data_consultului": {
+    "value": "2026-08-08",
+    "evidence": "opt august doua mii douazeci si sase"
+  },
+  "medic": {
+    "value": "Dr. Andrei Popescu",
+    "evidence": "medic doctor Andrei Popescu"
+  },
+  "acuze_principale": {
+    "value": [
+      "Dureri toracice",
+      "Dispnee la efort mediu"
+    ],
+    "evidence": "dureri toracice si dispnee la efort mediu"
+  },
+  "debut": {
+    "value": "În urmă cu aproximativ 4 zile, cu instalare treptată",
+    "evidence": "a inceput cam de patru zile, treptat"
+  },
+  "istoric_boala_actuala": {
+    "value": "Simptomatologie debutată în urmă cu aproximativ 4 zile, cu instalare treptată. Inițial dispneea apărea doar la urcatul scărilor, iar de ieri și la mers pe teren plat. Durerea este descrisă ca o apăsare retrosternală, cu durată de câteva minute, care cedează la repaus, fără iradiere în braț. Pacienta neagă palpitațiile și sincopa.",
+    "evidence": "Durerea o descrie ca o apasare retrosternala, dureaza cateva minute, cedeaza la repaus"
+  },
+  "antecedente_personale": {
+    "value": [
+      "Hipertensiune arterială de aproximativ 8 ani",
+      "Dislipidemie",
+      "Colecistectomie (2019)"
+    ],
+    "evidence": "cunoscuta cu hipertensiune arteriala de vreo opt ani si cu dislipidemie"
+  },
+  "antecedente_heredocolaterale": {
+    "value": [
+      "Mamă — infarct miocardic, deces la 62 de ani"
+    ],
+    "evidence": "Mama a decedat prin infarct miocardic la saizeci si doi de ani"
+  },
+  "medicatie_curenta": {
+    "value": [
+      {
+        "denumire": "Perindopril",
+        "doza": "5 mg",
+        "frecventa": "dimineața"
+      },
+      {
+        "denumire": "Atorvastatină",
+        "doza": "20 mg",
+        "frecventa": "seara"
+      }
+    ],
+    "evidence": "perindopril cinci miligrame dimineata si atorvastatina douazeci de miligrame seara"
+  },
+  "alergii": {
+    "value": null,
+    "evidence": null
+  },
+  "consum_toxice": {
+    "value": "Fumătoare, aproximativ 10 țigări/zi de circa 30 de ani. Consum de alcool ocazional.",
+    "evidence": "Fumeaza, cam zece tigari pe zi, de vreo treizeci de ani"
+  },
+  "stare_generala": {
+    "value": "Bună, conștientă, cooperantă",
+    "evidence": "stare generala buna, constienta, cooperanta"
+  },
+  "ta_sistolica": {
+    "value": 150,
+    "evidence": "Tensiunea o sut cinzeci pe nouazeci"
+  },
+  "ta_diastolica": {
+    "value": 90,
+    "evidence": "Tensiunea o sut cinzeci pe nouazeci"
+  },
+  "puls": {
+    "value": 88,
+    "evidence": "alura ventriculara optzeci si opt pe minut, ritmic"
+  },
+  "temperatura": {
+    "value": 36.8,
+    "evidence": "Temperatura treizeci si sase virgula opt"
+  },
+  "saturatie_oxigen": {
+    "value": 97,
+    "evidence": "Saturatia nouazeci si sapte la sută in aer atmosferic"
+  },
+  "examen_pe_aparate": {
+    "value": "Cardiovascular: zgomote cardiace ritmice, fără sufluri. Respirator: murmur vezicular prezent bilateral, fără raluri. Abdomen suplu, nedureros la palpare. Fără edeme la membrele inferioare.",
+    "evidence": "zgomote cardiace ritmice, fara sufluri"
+  },
+  "investigatii_efectuate": {
+    "value": "Electrocardiogramă efectuată în cabinet: ritm sinusal, fără modificări acute de segment ST.",
+    "evidence": "electrocardiograma in cabinet, ritm sinusal, fara modificari acute de segment ST"
+  },
+  "investigatii_recomandate": {
+    "value": [
+      "Ecocardiografie",
+      "Test de efort",
+      "Hemoleucogramă",
+      "Profil lipidic",
+      "Glicemie",
+      "Troponină"
+    ],
+    "evidence": "Recomand ecocardiografie, test de efort si un set de analize"
+  },
+  "diagnostic_prezumtiv": {
+    "value": [
+      "Angină pectorală de efort, clasa II CCS",
+      "Hipertensiune arterială esențială",
+      "Dislipidemie"
+    ],
+    "evidence": "angina pectorala de efort, clasa doi canadiana"
+  },
+  "diagnostic_diferential": {
+    "value": [
+      "Boală de reflux gastroesofagian",
+      "Cauză musculoscheletală"
+    ],
+    "evidence": "boala de reflux gastroesofagian sau o cauza musculoscheletala"
+  },
+  "tratament_recomandat": {
+    "value": [
+      {
+        "denumire": "Aspirină",
+        "doza": "75 mg",
+        "frecventa": "o dată pe zi, seara",
+        "durata": "termen lung"
+      },
+      {
+        "denumire": "Nitroglicerină spray",
+        "doza": null,
+        "frecventa": "la nevoie, la durere",
+        "durata": null
+      },
+      {
+        "denumire": "Perindopril (se continuă)",
+        "doza": "5 mg",
+        "frecventa": "dimineața",
+        "durata": null
+      },
+      {
+        "denumire": "Atorvastatină (se continuă)",
+        "doza": "20 mg",
+        "frecventa": "seara",
+        "durata": null
+      }
+    ],
+    "evidence": "aspirina saptezeci si cinci de miligrame pe zi, seara, pe termen lung"
+  },
+  "recomandari": {
+    "value": [
+      "Renunțare la fumat",
+      "Regim hiposodat și hipolipidic",
+      "Evitarea efortului intens până la testul de efort",
+      "Prezentare de urgență la camera de gardă dacă durerea apare în repaus sau durează peste 20 de minute"
+    ],
+    "evidence": "sa se lase de fumat, regim hiposodat si hipolipidic"
+  },
+  "reevaluare": {
+    "value": "Control peste 2 săptămâni, cu rezultatele analizelor",
+    "evidence": "Revine la control peste doua saptamani cu rezultatele analizelor"
+  },
+  "trimitere": {
+    "value": null,
+    "evidence": null
+  }
+}
